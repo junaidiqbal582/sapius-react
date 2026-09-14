@@ -1,0 +1,48 @@
+:root {
+  --ink: #071b19;
+  --ink-soft: #0d2c28;
+  --foam: #e8f6f2;
+  --mist: #b7d8cf;
+  --teal: #2f9a86;
+  --teal-bright: #5ecfb8;
+  --leaf: #9fd9a4;
+  --danger: #e07a6a;
+  --glass: rgba(8, 28, 25, 0.72);
+  --line: rgba(232, 246, 242, 0.14);
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'Sora', 'Segoe UI', sans-serif;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--foam);
+  background: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+::selection {
+  background: rgba(94, 207, 184, 0.35);
+}

@@ -1,0 +1,340 @@
+.shell {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+}
+
+.atmosphere {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 12% 18%, rgba(47, 154, 134, 0.38), transparent 60%),
+    radial-gradient(ellipse 55% 50% at 88% 78%, rgba(159, 217, 164, 0.22), transparent 58%),
+    radial-gradient(ellipse 45% 40% at 70% 12%, rgba(232, 246, 242, 0.08), transparent 55%),
+    linear-gradient(160deg, #041412 0%, #0b2e2a 48%, #123d35 100%);
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+.atmosphere::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(232, 246, 242, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232, 246, 242, 0.03) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(circle at 40% 40%, black 20%, transparent 75%);
+  opacity: 0.55;
+}
+
+@keyframes drift {
+  from {
+    transform: scale(1) translate(0, 0);
+  }
+  to {
+    transform: scale(1.05) translate(-1.5%, 1%);
+  }
+}
+
+.layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  min-height: 100svh;
+  width: min(1120px, calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 3rem) 0;
+}
+
+.brand-pane {
+  max-width: 34rem;
+}
+
+.brand-mark {
+  margin: 0 0 1.25rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 6vw, 4.25rem);
+  font-style: italic;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: var(--foam);
+}
+
+.headline {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 4.8vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.headline span {
+  display: block;
+  color: var(--teal-bright);
+}
+
+.lede {
+  margin: 1.25rem 0 0;
+  max-width: 28rem;
+  color: var(--mist);
+  font-size: 1.05rem;
+  line-height: 1.65;
+}
+
+.auth-pane {
+  width: min(100%, 420px);
+  justify-self: end;
+  padding: 1.75rem 1.6rem 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+.auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.35rem;
+  margin-bottom: 1.35rem;
+  padding: 0.3rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tab {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.65rem 0.75rem;
+  background: transparent;
+  color: var(--mist);
+  transition: background 220ms ease, color 220ms ease, transform 220ms ease;
+}
+
+.tab.active {
+  background: rgba(94, 207, 184, 0.18);
+  color: var(--foam);
+}
+
+.tab:hover {
+  color: var(--foam);
+}
+
+.auth-pane h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.auth-sub {
+  margin: 0.45rem 0 1.35rem;
+  color: var(--mist);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.auth-form {
+  display: grid;
+  gap: 0.95rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.field span {
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--mist);
+}
+
+.field input {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.85rem 0.95rem;
+  background: rgba(4, 20, 18, 0.55);
+  color: var(--foam);
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.field input::placeholder {
+  color: rgba(183, 216, 207, 0.45);
+}
+
+.field input:focus {
+  border-color: rgba(94, 207, 184, 0.65);
+  box-shadow: 0 0 0 3px rgba(94, 207, 184, 0.16);
+}
+
+.password-row {
+  position: relative;
+}
+
+.password-row input {
+  padding-right: 4.25rem;
+}
+
+.toggle-visibility {
+  position: absolute;
+  top: 50%;
+  right: 0.55rem;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: var(--teal-bright);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.form-error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 0.88rem;
+}
+
+.btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  font-weight: 600;
+  transition: transform 180ms ease, background 180ms ease, opacity 180ms ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn-primary {
+  margin-top: 0.25rem;
+  background: linear-gradient(135deg, var(--teal) 0%, #1f7d6c 100%);
+  color: #041412;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, var(--teal-bright) 0%, var(--teal) 100%);
+}
+
+.btn-ghost {
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--foam);
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.switch-line {
+  margin: 1.15rem 0 0;
+  text-align: center;
+  color: var(--mist);
+  font-size: 0.9rem;
+}
+
+.text-link {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: var(--teal-bright);
+  font-weight: 600;
+}
+
+.text-link:hover {
+  text-decoration: underline;
+}
+
+.welcome {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: start;
+  gap: 0.75rem;
+  width: min(560px, calc(100% - 2.5rem));
+  margin: 0 auto;
+  min-height: 100svh;
+  padding: 4rem 0;
+  align-content: center;
+}
+
+.welcome h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 3.4rem);
+  font-weight: 400;
+  line-height: 1.1;
+}
+
+.brand-enter,
+.form-enter,
+.panel-enter {
+  animation: rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.delay-1 {
+  animation-delay: 90ms;
+}
+
+.delay-2 {
+  animation-delay: 180ms;
+}
+
+.form-enter {
+  animation-delay: 160ms;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: 1fr;
+    align-content: start;
+    padding-top: 2rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .brand-pane {
+    max-width: none;
+  }
+
+  .auth-pane {
+    justify-self: stretch;
+    width: 100%;
+  }
+
+  .lede {
+    max-width: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .atmosphere,
+  .brand-enter,
+  .form-enter,
+  .panel-enter {
+    animation: none;
+  }
+}
