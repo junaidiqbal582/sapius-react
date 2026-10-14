@@ -1,21 +1,31 @@
 import { useState } from 'react'
 import AuthForm from './components/AuthForm.jsx'
+import { clearSession, persistSession, readSession } from './lib/auth.js'
 import './App.css'
 
 export default function App() {
   const [mode, setMode] = useState('signin')
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(() => readSession())
 
   function handleAuth(data) {
-    setUser({
+    persistSession({
       name: data.name || data.email.split('@')[0],
       email: data.email,
     })
+    // Full reload so index.html boots the widget in onboarding mode with this email.
+    window.location.reload()
   }
 
   function handleSignOut() {
+    const sapius = window.Sapius
+    if (sapius && typeof sapius.signOut === 'function') {
+      sapius.signOut()
+    }
+    clearSession()
     setUser(null)
     setMode('signin')
+    // Full reload so the embed script switches back to anonymous demo mode.
+    window.location.reload()
   }
 
   if (user) {

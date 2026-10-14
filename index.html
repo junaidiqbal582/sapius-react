@@ -14,11 +14,66 @@
   </head>
   <body>
     <div id="root"></div>
+    <script>
+      ;(function () {
+        var SAPIUS_ORIGIN = 'https://getsapius.co.uk'
+        var TENANT_KEY =
+          'ba7e0e1e4fdceb5f2e0f52fe9f95a3ec5ae8ba6182a678d99622f9c5041fdf0b'
+        var AUTH_COOKIE = 'thisisjustarandomstring'
+        var USER_COOKIE = 'sapius_demo_user'
+
+        function getCookie(name) {
+          var value = '; ' + document.cookie
+          var parts = value.split('; ' + name + '=')
+          if (parts.length !== 2) return
+          var raw = parts.pop().split(';').shift()
+          if (!raw) return
+          try {
+            return decodeURIComponent(raw)
+          } catch (e) {
+            return raw
+          }
+        }
+
+        function isSignedIn() {
+          var raw = getCookie(AUTH_COOKIE)
+          if (!raw) return false
+          try {
+            return Boolean(JSON.parse(raw))
+          } catch (e) {
+            return Boolean(raw)
+          }
+        }
+
+        var mode = isSignedIn() ? 'onboarding' : 'demo'
+        var signedInEmail = ''
+        if (mode === 'onboarding') {
+          var userRaw = getCookie(USER_COOKIE)
+          if (userRaw) {
+            try {
+              var userObj = JSON.parse(userRaw)
+              if (userObj && userObj.email) {
+                signedInEmail = String(userObj.email).trim().toLowerCase()
+              }
+            } catch (e) {
+              // ignore
+            }
+          }
+        }
+
+        var widget = document.createElement('script')
+        widget.src = SAPIUS_ORIGIN + '/sapius-widget.js'
+        widget.setAttribute('data-tenant-key', TENANT_KEY)
+        widget.setAttribute('data-mode', mode)
+        widget.setAttribute('data-sapius-embed-mode', mode)
+        if (mode === 'onboarding') {
+          widget.setAttribute('data-user-email-cookie', USER_COOKIE)
+          widget.setAttribute('data-user-email-json-path', 'email')
+          if (signedInEmail) widget.setAttribute('data-user-email', signedInEmail)
+        }
+        document.body.appendChild(widget)
+      })()
+    </script>
     <script type="module" src="/src/main.jsx"></script>
-    <script
-      src="https://getsapius.co.uk/sapius-widget.js"
-      data-tenant-key="ba7e0e1e4fdceb5f2e0f52fe9f95a3ec5ae8ba6182a678d99622f9c5041fdf0b"
-      data-mode="demo"
-    ></script>
   </body>
 </html>
