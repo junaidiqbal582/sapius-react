@@ -15,7 +15,7 @@ export default function SiteNav({ page, user, onSignOut }) {
         data-demo-id="nav-brand"
         onClick={() => navigate('home')}
       >
-        Sapius
+        ProjectFlow
       </button>
 
       <nav className="nav-links" aria-label="Primary">

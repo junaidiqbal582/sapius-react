@@ -38,7 +38,7 @@ export default function HomePage({ user, mode, onModeChange, onAuth }) {
   return (
     <div className="layout">
       <section className="brand-pane">
-        <p className="brand-mark brand-enter">Sapius</p>
+        <p className="brand-mark brand-enter">ProjectFlow</p>
         <h1 className="headline brand-enter delay-1">
           Think clearly.
           <span>Decide wisely.</span>

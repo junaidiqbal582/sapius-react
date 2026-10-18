@@ -87,7 +87,7 @@ export default function AuthForm({ mode, onModeChange, onSubmit }) {
       <h2 id="auth-title">{isSignUp ? 'Create your account' : 'Welcome back'}</h2>
       <p className="auth-sub">
         {isSignUp
-          ? 'Join Sapius and start organizing your thinking.'
+          ? 'Join ProjectFlow and start organizing your thinking.'
           : 'Sign in to continue to your workspace.'}
       </p>
 
