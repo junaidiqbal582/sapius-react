@@ -1,7 +1,282 @@
 .shell {
   position: relative;
   min-height: 100svh;
+  overflow-x: hidden;
+}
+
+.shell-content {
+  position: relative;
+  z-index: 1;
+  width: min(1120px, calc(100% - 2.5rem));
+  margin: 0 auto;
+  padding-bottom: 3rem;
+}
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.15rem 0 0.5rem;
+}
+
+.nav-brand {
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  color: var(--foam);
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+  margin-left: 0.75rem;
+}
+
+.nav-link {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  background: transparent;
+  color: var(--mist);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 180ms ease, color 180ms ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--foam);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-left: auto;
+}
+
+.nav-user {
+  max-width: 10rem;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--mist);
+  font-size: 0.88rem;
+}
+
+.btn-compact {
+  padding: 0.55rem 0.9rem;
+  font-size: 0.88rem;
+}
+
+.page-main {
+  padding: clamp(1.5rem, 4vw, 2.75rem) 0 1rem;
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.65rem;
+  color: var(--teal-bright);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.3rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.lede.tight {
+  margin-top: 0.65rem;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.plan-card {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.35rem 1.25rem 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+}
+
+.plan-card.featured {
+  border-color: rgba(94, 207, 184, 0.45);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.plan-card h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 400;
+}
+
+.plan-price {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.plan-price span {
+  margin-left: 0.2rem;
+  color: var(--mist);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.plan-blurb {
+  margin: 0;
+  color: var(--mist);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.plan-card ul {
+  margin: 0.25rem 0 0.5rem;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.plan-card li {
+  color: var(--foam);
+  font-size: 0.9rem;
+}
+
+.plan-card li::before {
+  content: '– ';
+  color: var(--teal-bright);
+}
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  margin: 1.5rem 0;
+}
+
+.stat-card {
+  padding: 1.1rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(8, 28, 25, 0.55);
+}
+
+.stat-label {
+  margin: 0;
+  color: var(--mist);
+  font-size: 0.82rem;
+}
+
+.stat-value {
+  margin: 0.35rem 0 0;
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.list-panel {
+  padding: 1.25rem 1.3rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--glass);
+  backdrop-filter: blur(18px);
+}
+
+.list-panel h2 {
+  margin: 0 0 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 400;
+}
+
+.project-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.project-row {
+  display: grid;
+  grid-template-columns: 1.4fr 0.7fr 0.7fr;
+  gap: 0.75rem;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 0.85rem 0.9rem;
+  background: rgba(255, 255, 255, 0.03);
+  color: inherit;
+  text-align: left;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.project-row:hover {
+  border-color: var(--line);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.project-name {
+  font-weight: 600;
+}
+
+.project-meta {
+  color: var(--mist);
+  font-size: 0.9rem;
+}
+
+.inline-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.85rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(8, 28, 25, 0.55);
+}
+
+.inline-form .field {
+  flex: 1 1 220px;
 }
 
 .atmosphere {
@@ -37,15 +312,11 @@
 }
 
 .layout {
-  position: relative;
-  z-index: 1;
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: clamp(2rem, 5vw, 4.5rem);
   align-items: center;
-  min-height: 100svh;
-  width: min(1120px, calc(100% - 2.5rem));
-  margin: 0 auto;
+  min-height: calc(100svh - 5rem);
   padding: clamp(1.5rem, 4vw, 3rem) 0;
 }
 
@@ -258,27 +529,6 @@
   text-decoration: underline;
 }
 
-.welcome {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  place-items: start;
-  gap: 0.75rem;
-  width: min(560px, calc(100% - 2.5rem));
-  margin: 0 auto;
-  min-height: 100svh;
-  padding: 4rem 0;
-  align-content: center;
-}
-
-.welcome h1 {
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 3.4rem);
-  font-weight: 400;
-  line-height: 1.1;
-}
-
 .brand-enter,
 .form-enter,
 .panel-enter {
@@ -312,8 +562,9 @@
   .layout {
     grid-template-columns: 1fr;
     align-content: start;
-    padding-top: 2rem;
+    padding-top: 1.25rem;
     padding-bottom: 2.5rem;
+    min-height: auto;
   }
 
   .brand-pane {
@@ -327,6 +578,26 @@
 
   .lede {
     max-width: none;
+  }
+
+  .site-nav {
+    flex-wrap: wrap;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .plan-grid,
+  .stat-row {
+    grid-template-columns: 1fr;
+  }
+
+  .project-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
   }
 }
 
