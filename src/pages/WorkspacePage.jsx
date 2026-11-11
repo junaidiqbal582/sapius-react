@@ -9,7 +9,6 @@ const PROJECTS = [
 
 export default function WorkspacePage({ user }) {
   const [projects, setProjects] = useState(PROJECTS)
-  const [showForm, setShowForm] = useState(false)
   const [projectName, setProjectName] = useState('')
 
   if (!user) {
@@ -42,7 +41,6 @@ export default function WorkspacePage({ user }) {
     const id = name.toLowerCase().replace(/\s+/g, '-')
     setProjects((prev) => [{ id, name, status: 'Active', tasks: 0 }, ...prev])
     setProjectName('')
-    setShowForm(false)
   }
 
   return (
@@ -55,38 +53,28 @@ export default function WorkspacePage({ user }) {
           </h1>
           <p className="lede tight">Here is what is moving across your projects.</p>
         </div>
+      </div>
+
+      <div className="inline-form" data-demo-id="add-project-form">
+        <label className="field">
+          <span>Project name</span>
+          <input
+            type="text"
+            data-demo-id="input-project-name"
+            placeholder="Q2 launch plan"
+            value={projectName}
+            onChange={(e) => setProjectName(e.target.value)}
+          />
+        </label>
         <button
           type="button"
           className="btn btn-primary"
-          data-demo-id="create-project"
-          onClick={() => setShowForm((v) => !v)}
+          data-demo-id="btn-save-project"
+          onClick={addProject}
         >
-          Create project
+          Save
         </button>
       </div>
-
-      {showForm && (
-        <div className="inline-form" data-demo-id="add-project-form">
-          <label className="field">
-            <span>Project name</span>
-            <input
-              type="text"
-              data-demo-id="input-project-name"
-              placeholder="Q2 launch plan"
-              value={projectName}
-              onChange={(e) => setProjectName(e.target.value)}
-            />
-          </label>
-          <button
-            type="button"
-            className="btn btn-primary"
-            data-demo-id="btn-save-project"
-            onClick={addProject}
-          >
-            Save
-          </button>
-        </div>
-      )}
 
       <div className="stat-row">
         <article className="stat-card" data-demo-id="stat-active-projects">
@@ -112,7 +100,6 @@ export default function WorkspacePage({ user }) {
                 type="button"
                 className="project-row"
                 data-demo-id={`project-row-${project.id}`}
-                onClick={() => setShowForm(false)}
               >
                 <span className="project-name">{project.name}</span>
                 <span className="project-meta">{project.status}</span>
